@@ -21,11 +21,28 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize ViewModel
         viewModel = new ViewModelProvider(this).get(StopwatchViewModel.class);
-        tvTime = new TextView;
+        viewModel.GetAggregatedTime();
+        tvTime = findViewById(R.id.tvTime);
 
         // TODO: Initialize UI components (TextView, Buttons)
 
         // TODO: Set up button listeners for Start/Stop and Reset
+    }
+
+    public Void OnResetClick (View view){
+
+    }
+
+    public void OnStartStopClick (View view){
+        Button StartStopButton = (Button) view;
+        String StartStop = StartStopButton.getText().toString();
+        if(StartStop.equals("Start")){
+
+        }
+        else{//Do stop
+
+        }
+
     }
 
     // TODO: Format elapsed time for display
