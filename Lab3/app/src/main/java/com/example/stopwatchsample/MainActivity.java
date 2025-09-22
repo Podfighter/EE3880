@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize ViewModel
         viewModel = new ViewModelProvider(this).get(StopwatchViewModel.class);
+        tvTime = new TextView;
 
         // TODO: Initialize UI components (TextView, Buttons)
 
