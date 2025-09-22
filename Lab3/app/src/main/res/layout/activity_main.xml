@@ -25,14 +25,12 @@ android:textColor="#000000" />
     android:layout_height="wrap_content"
     android:layout_columnWeight="1"
     android:onClick = "OnStartStopClick"
-    android:text="Start" />
+    android:text="@string/Start" />
 <Button
     android:id="@+id/Reset"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_columnWeight="1"
     android:onClick = "OnResetClick"
-    android:text="Reset" />
-
-</GridLayout>
+    android:text="@string/Reset" />
 </LinearLayout>
