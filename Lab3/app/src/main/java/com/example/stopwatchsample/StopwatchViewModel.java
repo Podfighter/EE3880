@@ -1,5 +1,7 @@
 package com.example.stopwatchsample;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -15,8 +17,10 @@ public class StopwatchViewModel extends ViewModel {
     Thread TimeKeeper = new Thread(new Runnable() {
         @Override
         public void run() {
-            if(!isStoped){
-                GetAggregatedTime().postValue(System.currentTimeMillis() - StartTime);
+            while(true){
+                if(!isStoped) {
+                    GetAggregatedTime().postValue(System.currentTimeMillis() - StartTime + elapsedTime);
+                }
             }
         }
     });
@@ -24,14 +28,19 @@ public class StopwatchViewModel extends ViewModel {
     public MutableLiveData<Long> GetAggregatedTime(){
         if(AggregatedTime == null){
             AggregatedTime = new MutableLiveData<Long>();
-            TimeKeeper.start();
+
         }
         return AggregatedTime;
     }
 
     public void StartClock(){
+
         StartTime = System.currentTimeMillis();
         isStoped = false;
+        if(!TimeKeeper.isAlive())
+        {
+            TimeKeeper.start();
+        }
     }
 
     public void StopClock(){
@@ -39,11 +48,10 @@ public class StopwatchViewModel extends ViewModel {
         if(AggregatedTime.isInitialized()) {
             elapsedTime = AggregatedTime.getValue();
         }
-
-
     }
 
     public void ResetClock(){
+        StartTime = System.currentTimeMillis();
         AggregatedTime.setValue(0L);
         elapsedTime = 0L;
     }
